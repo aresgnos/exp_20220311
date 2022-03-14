@@ -1,16 +1,3 @@
-// 컬렉션 member8, 시퀀스X
-// _id 아이디 String
-// name 이름 String
-// password 암호 String
-// email 이메일 String
-// age 나이 Number
-// regdate Date
-
-// routes/member.js
-
-// member/insert
-// member/select
-
 // npm i mongoose --save
 var mongoose = require('mongoose');
 
