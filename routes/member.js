@@ -15,6 +15,27 @@ const jwt = require('jsonwebtoken');
 var Member = require('../models/member');
 
 
+// 회원정보 1개 조회
+// http://127.0.0.1:3000/member/selectone
+router.get('/selectone', auth.checkToken, async function(req, res, next) {
+    try {
+        const sessionID = req.body.USERID; // 토큰에서 추출
+
+        // 아이디에 해당하는 값을 조회
+        const result = await Member.findOne({_id : sessionID}).select({"name":1, "age":1});
+        console.log(result);
+        if(result !== null){
+          return res.send({status:200, result:result})
+        }
+        return res.send({status:200, result:0});
+
+    }catch(e) {
+      console.error(e);
+      return res.send({status:-1});
+    }
+});
+
+
 // 회원정보수정 (로그인, 토큰), 이름과 나이 변경
 // http://127.0.0.1:3000/member/update
 // {"name":"변경이름", "age":1234}
