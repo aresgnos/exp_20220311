@@ -15,7 +15,7 @@ const self = module.exports = {
         issuer : 'ds'
     },
 
-    // 프론트엔드에서 오는 토큰 검증 부분
+    // 프론트엔드에서 오는 토큰 검증 부분 (토큰의 유효성 검사)
     checkToken : async(req, res, next) => {
         try{
             const token = req.headers.auth; // key = auth, 토큰은 headers로 와야함.
@@ -25,7 +25,7 @@ const self = module.exports = {
 
             // 발행시 sign <=> verify 검증시
             // 발행된 토큰, 보안키(셀프 밑에 securityKEY)
-            // 토큰 검증하는 부분
+            // 토큰 검증하는 부분(토큰을 복원할 때)
             const sessionData = jwt.verify(token, self.securityKEY);
 
             // USERID, USERNAME 이라는 키가 존재하는지 확인

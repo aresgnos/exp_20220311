@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-// npm i mongoose --save
+// npm i mongoose --save mongoDB연동
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://id216:pw216@1.234.5.158:37017/db216')

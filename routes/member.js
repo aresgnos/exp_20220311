@@ -27,7 +27,7 @@ router.get('/selectone', auth.checkToken, async function(req, res, next) {
         if(result !== null){
           return res.send({status:200, result:result})
         }
-        return res.send({status:200, result:0});
+        return res.send({status:0, result:0});
 
     }catch(e) {
       console.error(e);
@@ -86,7 +86,7 @@ router.put('/updatepw', auth.checkToken, async function(req, res, next) {
       Member1.password  = hashPw1;
 
       const result = await Member1.save();
-      if (result._id != '') {
+      if (result._id !== '') {
           return res.send({status:200});            
       }
       return res.send({status:0});
@@ -256,6 +256,8 @@ router.post('/select', async function(req, res, next) {
                 USERID : result._id,
                 USERNAME : result.name
             };
+
+            // 토큰 발행
             const token 
                 = jwt.sign( sessionData, auth.securityKEY, auth.options )
 
